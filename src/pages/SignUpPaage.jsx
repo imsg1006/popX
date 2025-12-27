@@ -87,8 +87,7 @@ const SignupPage = ({ onNavigate }) => {
               )}
             </div>
           ))}
-
-          {/* Agency */}
+ 
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">
               Are you an Agency?*
@@ -115,7 +114,7 @@ const SignupPage = ({ onNavigate }) => {
             className={`w-full py-3 rounded-lg font-semibold transition mt-6
               ${
                 isValid
-                  ? "bg-purple-600 text-white hover:bg-purple-700"
+                  ? "bg-purple-600 cursor-pointer text-white hover:bg-purple-700"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
           >

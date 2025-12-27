@@ -1,5 +1,4 @@
-import { Camera } from "lucide-react";
-import React from "react";
+import { Camera } from "lucide-react"; 
 import { getUser } from "../utils/auth";
 import { Navigate } from "react-router-dom";
 
@@ -55,8 +54,8 @@ const AccountSettingsPage = () => {
           </p>
         </div>
 
-        {/* Bottom dotted spacing like image */}
-        <div className="h-40 border-b-2 border-dotted border-gray-300"></div>
+         
+        <div className="h-96 border-b-2 border-dotted border-gray-300"></div>
       </div>
     </div>
   );

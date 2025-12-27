@@ -6,7 +6,7 @@ const LandingPage = () => {
 
   return (
     <div className="h-full flex flex-col justify-end px-6 pb-10">
-      {/* Text Content */}
+      
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-800 mb-3">
           Welcome to PopX
@@ -16,7 +16,7 @@ const LandingPage = () => {
         </p>
       </div>
 
-      {/* Buttons */}
+       
       <div className="space-y-3">
         <button
           onClick={() => navigate("/signup")}

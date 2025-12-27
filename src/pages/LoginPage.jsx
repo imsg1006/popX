@@ -61,7 +61,7 @@ const LoginPage = ({ onNavigate }) => {
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Email */}
+           
           <div className="relative w-full">
             <span className="absolute -top-2.5 left-4 bg-white px-1 text-sm font-medium text-purple-600">
               Email Address
@@ -86,7 +86,7 @@ const LoginPage = ({ onNavigate }) => {
             )}
           </div>
 
-          {/* Password */}
+           
           <div className="relative w-full">
             <span className="absolute -top-2.5 left-4 bg-white px-1 text-sm font-medium text-purple-600">
               Password
@@ -120,7 +120,7 @@ const LoginPage = ({ onNavigate }) => {
             className={`w-full py-3 rounded-lg font-semibold transition
               ${
                 isValid
-                  ? "bg-purple-600 text-white hover:bg-purple-700"
+                  ? "bg-purple-600 cursor-pointer text-white hover:bg-purple-700"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
           >

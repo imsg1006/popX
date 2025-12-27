@@ -2,8 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { saveUser } from "../utils/auth";
 
-/* ---------------- Schema ---------------- */
 const signupSchema = yup.object({
   fullName: yup.string().required("Full name is required"),
   phoneNumber: yup
@@ -35,13 +36,21 @@ const SignupPage = ({ onNavigate }) => {
     },
   });
 
-  const onSubmit = () => {
-    onNavigate("account");
-  };
+   const navigate = useNavigate();
 
+ const onSubmit = (data) => {
+    saveUser({
+      email: data.email,
+      password: data.password,
+      name: data.fullName,
+    });
+
+    navigate("/login");
+  
+  };
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full">
+    <div className=" bg-gray-50 ">
+      <div className="bg-white rounded-lg p-8 max-w-sm w-full">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">
           Create your PopX account
         </h1>
@@ -113,13 +122,7 @@ const SignupPage = ({ onNavigate }) => {
             Create Account
           </button>
         </form>
-
-        <button
-          onClick={() => onNavigate("landing")}
-          className="mt-6 text-purple-600 hover:text-purple-700 font-medium text-sm"
-        >
-          ← Back to Welcome
-        </button>
+ 
       </div>
     </div>
   );

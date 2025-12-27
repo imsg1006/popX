@@ -2,8 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
-/* ---------------- Schema ---------------- */
+import { useNavigate } from "react-router-dom";
+import { getUser } from "../utils/auth";
+import { useState } from "react";
+ 
 const loginSchema = yup.object({
   email: yup
     .string()
@@ -16,6 +18,7 @@ const loginSchema = yup.object({
 });
 
 const LoginPage = ({ onNavigate }) => {
+     const [authError, setAuthError] = useState("");
   const {
     register,
     handleSubmit,
@@ -25,13 +28,31 @@ const LoginPage = ({ onNavigate }) => {
     mode: "onChange",
   });
 
-  const onSubmit = () => {
-    onNavigate("account");
-  };
+  const navigate = useNavigate();
 
+ const onSubmit = (data) => {
+    const savedUser = getUser();
+
+    if (!savedUser) {
+      setAuthError("No account found. Please sign up first.");
+      return;
+    }
+
+    if (
+      data.email !== savedUser.email ||
+      data.password !== savedUser.password
+    ) {
+      setAuthError("Invalid email or password.");
+      return;
+    }
+
+    setAuthError("");
+    navigate("/account");
+  };
+   
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full">
+    <div className=" bg-gray-50">
+      <div className="bg-white p-8 max-w-sm w-full">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
           Signin to your PopX account
         </h1>
@@ -89,6 +110,9 @@ const LoginPage = ({ onNavigate }) => {
               </p>
             )}
           </div>
+          {authError && (
+  <p className="text-red-500 text-sm text-center">{authError}</p>
+)}
 
           <button
             type="submit"
@@ -104,12 +128,7 @@ const LoginPage = ({ onNavigate }) => {
           </button>
         </form>
 
-        <button
-          onClick={() => onNavigate("landing")}
-          className="mt-6 text-purple-600 hover:text-purple-700 font-medium text-sm"
-        >
-          ← Back to Welcome
-        </button>
+         
       </div>
     </div>
   );

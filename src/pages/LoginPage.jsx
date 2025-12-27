@@ -33,10 +33,13 @@ const LoginPage = ({ onNavigate }) => {
  const onSubmit = (data) => {
     const savedUser = getUser();
 
-    if (!savedUser) {
-      setAuthError("No account found. Please sign up first.");
+    if (  data.email !== savedUser.email ) {
+      setAuthError("No account found. Taking you to Signup page...");
+      setTimeout(() => {
+        navigate("/signup");
+      }, 1500);
       return;
-    }
+    } 
 
     if (
       data.email !== savedUser.email ||
